@@ -6,10 +6,10 @@ Pada fase ini, Anda akan membangun API yang akan menjadi tulang punggung untuk k
 ## Persiapan Awal: Instalasi & Alat Wajib
 Sebelum memulai, pastikan Anda telah menginstal dua komponen utama berikut di komputer Anda.
 
-    1. Node.js
+-   ### 1. Node.js
     Lingkungan runtime yang memungkinkan Anda menjalankan kode JavaScript di luar browser.
 
-    Langkah Instalasi:
+-   ### Langkah Instalasi
         a. Kunjungi situs resmi Node.js: https://nodejs.org/
 
         b. Unduh versi LTS (Long-Term Support). Versi ini paling stabil dan 
@@ -17,10 +17,10 @@ Sebelum memulai, pastikan Anda telah menginstal dua komponen utama berikut di ko
            
         c. Jalankan installer dan ikuti petunjuknya hingga instalasi selesai.
 
-    2. MongoDB
-    Basis data NoSQL yang akan kita gunakan untuk menyimpan data produk secara fleksibel dan efisien.
-
-    Langkah Instalasi:
+-   ### 2. MongoDB
+    Basis data NoSQL yang akan kita gunakan untuk menyimpan data produk secara fleksibel dan efisien. 
+    
+-   ### Langkah Instalasi :
         a. Kunjungi halaman unduhan MongoDB Community Server: 
            https://www.mongodb.com/try/download/community
 
