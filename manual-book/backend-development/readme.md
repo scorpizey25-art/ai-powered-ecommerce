@@ -109,3 +109,136 @@ c. Menjalankan server dengan menerima port 3000
 
 - Jika semuanya berhasil, Anda akan melihat pesan seperti ini di terminal: ✅ Terhubung ke MongoDB! Server berjalan di http://localhost:3000
 - Buka browser Anda dan kunjungi http://localhost:3000. Anda seharusnya melihat tulisan "Backend API berjalan!". Ini menandakan bahwa server Anda sudah sukses berjalan!
+
+### Langkah 2.3: Membuat Model Produk & API CRUD
+
+Sekarang, kita akan membuat API yang lebih fungsional. Kita akan mendefinisikan struktur data untuk produk dan membuat endpoint untuk melakukan operasi Create, Read, Update, dan Delete (CRUD).
+
+##### 1. Membuat Model Data Produk
+a. Buat folder baru bernama models di dalam folder backend Anda.
+b. Di dalam folder models, buat file baru bernama Product.js. File ini akan mendefinisikan skema produk kita.
+c. Salin dan tempel kode berikut ke dalam Product.js. Ini akan membuat skema produk dengan beberapa field dasar seperti nama, deskripsi, harga, dan stok.
+    
+
+    JavaScript
+    // import library mongoose
+    const mongoose = require('mongoose');
+
+    // Tetapkan rule / aturan skema untuk produk
+    // atribut nama, tipe data, required, default  
+    const productSchema = new mongoose.Schema({
+        name: { type: String, required: true },
+        description: { type: String, required: true },
+        price: { type: Number, required: true },
+        stock: { type: Number, required: true, default: 0 },
+        imageUrl: { type: String, required: false }
+    });
+    
+    // Masukkan productSchema kedalam model
+    // agar bisa digunakan berinteraksi dengan database (CRUD)
+    const Product = mongoose.model('Product', productSchema);
+
+    // export model Product agar bisa digunakan di file lain
+    module.exports = Product;
+
+
+##### 2. Menambahkan Rute API ke server.js
+a. Buka kembali file server.js Anda.
+b. Tambahkan require untuk model Product yang baru Anda buat di bagian atas file.
+c. Tambahkan endpoint API untuk operasi CRUD. Salin dan tempel kode berikut tepat di bawah baris app.use(express.json());.
+
+    JavaScript
+
+    const productRoutes = require('./routes/productRoutes');
+    app.use('/api/products', productRoutes);
+
+d. Anda akan menyadari kita membutuhkan file baru. Kita akan buat itu di langkah berikutnya.
+
+##### 3. Membuat Rute API Khusus Produk
+a. Buat folder baru bernama routes di dalam folder backend.
+b. Di dalam folder routes, buat file baru bernama productRoutes.js.
+c. Salin dan tempel kode berikut ke dalam productRoutes.js. Kode ini berisi logika untuk semua operasi CRUD.
+
+    JavaScript
+
+    const express = require('express');
+    const router = express.Router();
+    const Product = require('../models/Product');
+
+    // GET semua produk (READ)
+    router.get('/', async (req, res) => {
+        try {
+            const products = await Product.find();
+            res.json(products);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    });
+
+    // GET produk berdasarkan ID (READ)
+    router.get('/:id', async (req, res) => {
+        try {
+            const product = await Product.findById(req.params.id);
+            if (!product) return res.status(404).json({ message: 'Produk tidak ditemukan' });
+            res.json(product);
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    });
+
+    // POST produk baru (CREATE)
+    router.post('/', async (req, res) => {
+        const product = new Product({
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            stock: req.body.stock,
+            imageUrl: req.body.imageUrl
+        });
+        try {
+            const newProduct = await product.save();
+            res.status(201).json(newProduct);
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
+    });
+
+    // PATCH/PUT untuk update produk (UPDATE)
+    router.patch('/:id', async (req, res) => {
+        try {
+            const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
+            res.json(updatedProduct);
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+        }
+    });
+
+    // DELETE produk (DELETE)
+    router.delete('/:id', async (req, res) => {
+        try {
+            await Product.findByIdAndDelete(req.params.id);
+            res.json({ message: 'Produk berhasil dihapus' });
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    });
+
+    module.exports = router;
+
+##### 4. Menguji API
+a. Pastikan server Anda sudah berjalan. Jika tidak, jalankan lagi dengan node server.js.
+b. Anda tidak bisa menguji API ini langsung di browser. Anda membutuhkan alat seperti Postman atau Insomnia untuk mengirim permintaan POST, PATCH, dan DELETE. Atau, Anda bisa menggunakan extension di VS Code seperti "Thunder Client".
+c. Contoh Pengujian (menggunakan Postman/Insomnia):
+- Buat Produk Baru (POST): Kirim permintaan POST ke http://localhost:3000/api/products dengan data JSON di body-nya.
+
+        JSON
+        {
+          "name": "Laptop Gaming",
+          "description": "Laptop canggih untuk bermain game.",
+          "price": 15000000,
+          "stock": 50
+        }
+
+- Ambil Semua Produk (GET): Kirim permintaan GET ke http://localhost:3000/api/products. Anda akan melihat produk yang baru Anda buat.
+
+###### Setelah Anda menyelesaikan langkah ini dan berhasil menguji API Anda, kita akan beralih ke bagian yang tak kalah menarik: Layanan AI.
