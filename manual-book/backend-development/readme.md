@@ -420,7 +420,7 @@ Sekarang kita bisa melanjutkan ke langkah berikutnya, yaitu menghubungkan layana
         JavaScript
         npm install axios
 
-- Uji Integrasi: Pastikan kedua server Anda berjalan (satu untuk backend di port 3000
+- Uji Integrasi: Pastikan kedua server Anda berjalan (satu untuk backend di port 3000 dan 8000 )
 
     a. Jalankan service dari backend, 
 
@@ -433,5 +433,5 @@ Sekarang kita bisa melanjutkan ke langkah berikutnya, yaitu menghubungkan layana
     -- b1. masuk ke env >> .\venv\Scripts\activate
 
     -- b2. dengan perintah >> uvicorn main:app --reload
-    
+
     -- b3. akses URL : http://localhost:3000/api/products/recommendations
