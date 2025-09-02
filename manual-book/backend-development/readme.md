@@ -108,6 +108,7 @@ c. Menjalankan server dengan menerima port 3000
         node server.js
 
 - Jika semuanya berhasil, Anda akan melihat pesan seperti ini di terminal: ✅ Terhubung ke MongoDB! Server berjalan di http://localhost:3000
+
 - Buka browser Anda dan kunjungi http://localhost:3000. Anda seharusnya melihat tulisan "Backend API berjalan!". Ini menandakan bahwa server Anda sudah sukses berjalan!
 
 ## Langkah 2.3: Membuat Model Produk & API CRUD
@@ -116,7 +117,9 @@ Sekarang, kita akan membuat API yang lebih fungsional. Kita akan mendefinisikan 
 
 ##### 1. Membuat Model Data Produk
 a. Buat folder baru bernama models di dalam folder backend Anda.
+
 b. Di dalam folder models, buat file baru bernama Product.js. File ini akan mendefinisikan skema produk kita.
+
 c. Salin dan tempel kode berikut ke dalam Product.js. Ini akan membuat skema produk dengan beberapa field dasar seperti nama, deskripsi, harga, dan stok.
     
 
@@ -144,7 +147,9 @@ c. Salin dan tempel kode berikut ke dalam Product.js. Ini akan membuat skema pro
 
 ##### 2. Menambahkan Rute API ke server.js
 a. Buka kembali file server.js Anda.
+
 b. Tambahkan require untuk model Product yang baru Anda buat di bagian atas file.
+
 c. Tambahkan endpoint API untuk operasi CRUD. Salin dan tempel kode berikut tepat di bawah baris app.use(express.json());.
 
     JavaScript
@@ -156,7 +161,9 @@ d. Anda akan menyadari kita membutuhkan file baru. Kita akan buat itu di langkah
 
 ##### 3. Membuat Rute API Khusus Produk
 a. Buat folder baru bernama routes di dalam folder backend.
+
 b. Di dalam folder routes, buat file baru bernama productRoutes.js.
+
 c. Salin dan tempel kode berikut ke dalam productRoutes.js. Kode ini berisi logika untuk semua operasi CRUD.
 
     JavaScript
@@ -227,14 +234,21 @@ c. Salin dan tempel kode berikut ke dalam productRoutes.js. Kode ini berisi logi
 
 ##### 4. Menguji API
 a. Pastikan server Anda sudah berjalan. Jika tidak, jalankan lagi dengan node server.js.
+
 b. Anda tidak bisa menguji API ini langsung di browser. Anda membutuhkan alat seperti Postman atau Insomnia untuk mengirim permintaan POST, PATCH, dan DELETE. Atau, Anda bisa menggunakan extension di VS Code seperti "Thunder Client".
+
 c. Contoh testing API menggunakan ThunderClient :
 - Buat Produk Baru (POST): Kirim permintaan POST ke, 
     a. Download Extension ThunderClient di VSCode
+
     b. Disebelah Panel kiri bawah VSCode, klik icon pertir ThunderClient
+
     c. Masukkan URL : http://localhost:3000/api/products dan pilih POST
+
     d. Pilih tab Body dan masukkan data JSON diatas
+
     e. Klik tombol SEND
+
     f. Buka MongoDB Compas, klik ecommerce-db, data tersimpan
     
         JSON
