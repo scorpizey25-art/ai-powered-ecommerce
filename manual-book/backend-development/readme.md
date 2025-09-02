@@ -58,6 +58,7 @@ Selanjutnya, instal paket-paket yang kita butuhkan, yaitu Express.js untuk membu
 Buat file baru di dalam folder backend dan beri nama server.js. Salin dan tempel kode berikut ke dalam file tersebut. Kode ini akan menyiapkan server dan menghubungkannya ke database MongoDB.
 
     JavaScript
+    
     const express = require('express');
     const mongoose = require('mongoose');
     const app = express();
@@ -79,6 +80,25 @@ Buat file baru di dalam folder backend dan beri nama server.js. Salin dan tempel
     app.listen(port, () => {
         console.log(`Server berjalan di http://localhost:${port}`);
     });
+
+Kode program tersebut server.js intinya memiliki 3 tugas :
+a. Membuat Koneksi ke MongoDB 
+
+    MongoDB
+    mongoose.connect ('mongodb://localhost:27017/ecommerce-db')
+    ....
+
+b. Membuat routing untuk endpoint root
+
+    ExpressJS
+    app.get('/', (req, res)
+    ....
+
+c. Menjalankan server dengan menerima port 3000
+
+    ExpressJS
+     app.listen(port, () => {
+    ....
 
 ##### 5. Menjalankan Server
 - Pastikan MongoDB Community Server Anda sudah berjalan di background.
