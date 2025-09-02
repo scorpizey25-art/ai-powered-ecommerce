@@ -249,3 +249,125 @@ c. Contoh testing API menggunakan ThunderClient :
 - Untuk menghapus data (DELETE) : bubuhkan dibelakang URL + ID http://localhost:3000/api/products/68b6ae97d6b6ad8d25b6d891
 
 ###### Setelah Anda menyelesaikan langkah ini dan berhasil menguji API Anda, kita akan beralih ke bagian yang tak kalah menarik: Layanan AI.
+
+### Fase 3: Pengembangan Layanan AI
+
+Pada fase ini, Anda akan membuat layanan terpisah yang khusus menangani logika kecerdasan buatan. Layanan ini akan berkomunikasi dengan backend utama yang sudah Anda buat.
+
+#### Langkah 3.1: Menyiapkan Lingkungan AI
+
+##### a. Buat Folder Proyek AI: 
+Di dalam folder utama ai-powered-ecommerce, buat folder baru bernama ai-service.
+
+##### b. Siapkan Lingkungan Virtual Python: 
+Sangat disarankan untuk menggunakan lingkungan virtual agar dependensi proyek tidak bercampur dengan yang lain. Buka terminal, masuk ke folder ai-service, dan jalankan perintah:
+
+    Bash
+    
+    python -m venv venv
+
+##### c. Aktifkan Lingkungan Virtual:
+- Windows: venv\Scripts\activate
+- macOS / Linux: source venv/bin/activate
+    Setelah diaktifkan, Anda akan melihat (venv) di depan prompt terminal Anda.
+
+##### d.Instal Dependensi: 
+Instal library yang kita butuhkan. Kita akan menggunakan Pandas untuk mengelola data dan scikit-learn untuk model AI, serta FastAPI untuk membuat API.
+
+
+    Bash
+
+    pip install pandas scikit-learn fastapi uvicorn
+
+- Pandas: Untuk membaca dan memanipulasi data.
+- Scikit-learn: Library machine learning yang mudah digunakan.
+- FastAPI: Framework Python modern untuk membangun API yang sangat cepat.
+- Uvicorn: Server yang menjalankan aplikasi FastAPI.
+
+#### Langkah 3.2: Membuat Model Rekomendasi Sederhana
+
+Kita akan membuat sistem rekomendasi produk berdasarkan preferensi pengguna (dalam kasus ini, produk yang paling sering dibeli).
+
+1. Buat Data Dummy: 
+Buat file baru bernama data.csv di folder ai-service. Salin dan tempel data berikut yang mensimulasikan riwayat pembelian pengguna.
+
+        Cuplikan kode
+        
+        user_id,product_id,rating
+        1,101,5
+        1,102,4
+        2,101,3
+        2,103,5
+        3,102,5
+        3,103,4
+        4,101,5
+        4,102,4
+        5,103,3
+        5,104,5
+
+2. Buat Skrip Model: 
+Buat file baru bernama model.py di folder ai-service. Kode ini akan melatih model sederhana untuk memberikan rekomendasi.
+
+
+            Python
+        
+            import pandas as pd
+            from sklearn.metrics.pairwise import cosine_similarity
+            from sklearn.feature_extraction.text import TfidfVectorizer
+        
+            def train_model():
+                # Membaca data dummy
+                df = pd.read_csv('data.csv')
+        
+                # Contoh sederhana: Merekomendasikan berdasarkan rating tertinggi
+                # Di dunia nyata, ini akan lebih kompleks
+                top_products = df.groupby('product_id')['rating'].mean().sort_values(ascending=False)
+                return top_products.index.tolist()
+        
+            if __name__ == '__main__':
+                top_items = train_model()
+                print("Produk paling direkomendasikan:", top_items)
+
+#### Langkah 3.3: Membuat API untuk Model AI
+
+Kita akan mengekspos model AI melalui API agar bisa diakses oleh backend.
+
+1. Buat File API: Buat file baru bernama main.py di folder ai-service.
+2. Tulis Kode API: Salin dan tempel kode berikut. Kode ini akan membuat endpoint /recommend yang memanggil model Anda.
+
+
+            Python
+        
+            from fastapi import FastAPI
+            from .model import train_model
+        
+            app = FastAPI()
+        
+            # Endpoint untuk mendapatkan rekomendasi produk
+            @app.get("/recommend")
+            def get_recommendations():
+                try:
+                    recommended_products = train_model()
+                    return {"recommended_products": recommended_products}
+                except Exception as e:
+                    return {"error": str(e)}
+        
+            # Endpoint dasar untuk pengujian
+            @app.get("/")
+            def read_root():
+                return {"message": "Layanan AI berjalan!"}
+
+#### Langkah 3.4: Menguji Layanan AI
+
+1. Pastikan Anda masih di dalam lingkungan virtual Anda.
+
+2. Jalankan server API FastAPI dengan perintah:
+    
+    
+        Bash
+        
+        uvicorn main:app --reload
+
+3. Buka browser Anda dan kunjungi http://localhost:8000/recommend. Anda akan melihat respons JSON dengan daftar produk yang direkomendasikan.
+
+###### Selamat! Anda sudah berhasil membuat dan menjalankan layanan AI pertama Anda.
