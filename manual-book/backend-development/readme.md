@@ -110,7 +110,7 @@ c. Menjalankan server dengan menerima port 3000
 - Jika semuanya berhasil, Anda akan melihat pesan seperti ini di terminal: ✅ Terhubung ke MongoDB! Server berjalan di http://localhost:3000
 - Buka browser Anda dan kunjungi http://localhost:3000. Anda seharusnya melihat tulisan "Backend API berjalan!". Ini menandakan bahwa server Anda sudah sukses berjalan!
 
-### Langkah 2.3: Membuat Model Produk & API CRUD
+## Langkah 2.3: Membuat Model Produk & API CRUD
 
 Sekarang, kita akan membuat API yang lebih fungsional. Kita akan mendefinisikan struktur data untuk produk dan membuat endpoint untuk melakukan operasi Create, Read, Update, dan Delete (CRUD).
 
