@@ -385,3 +385,48 @@ Kita akan mengekspos model AI melalui API agar bisa diakses oleh backend.
 3. Buka browser Anda dan kunjungi http://localhost:8000/recommend. Anda akan melihat respons JSON dengan daftar produk yang direkomendasikan.
 
 ###### Selamat! Anda sudah berhasil membuat dan menjalankan layanan AI pertama Anda.
+
+### Mengintegrasikan Layanan AI Dengan Backend
+Sekarang kita bisa melanjutkan ke langkah berikutnya, yaitu menghubungkan layanan AI ini dengan backend utama Anda. 
+1. Buka kembali file productRoutes.js di folder backend/routes.
+
+2. Tambahkan rute baru untuk memanggil layanan AI. Salin dan tempel kode berikut tepat di akhir file, sebelum module.exports = router;.
+
+        JavaScript
+        
+        const axios = require('axios');
+        
+        // GET rekomendasi produk dari layanan AI
+        router.get('/recommendations', async (req, res) => {
+            try {
+                const aiServiceResponse = await 
+                axios.get('http://127.0.0.1:8000/recommend');
+                res.json(aiServiceResponse.data);
+            } catch (err) {
+                res.status(500).json({ message: 'Gagal mengambil 
+                rekomendasi dari layanan AI' });
+            }
+        });
+            
+3. Pada script tersebut, 
+
+- Pastikan Anda juga mengimpor library axios di bagian atas file productRoutes.js.
+
+        JavaScript
+        const axios = require('axios');
+
+- Install depedency axios, dengan perintah
+
+        JavaScript
+        npm install axios
+
+- Uji Integrasi: Pastikan kedua server Anda berjalan (satu untuk backend di port 3000
+
+    a. Jalankan service dari backend, 
+    -- a1. masukkan perintah >> node server.js 
+    -- a2. akses URL : http://localhost:3000/api/products/recommendations
+    
+    b. Jalankan service dari ai-service, pastikan anda pada lingkungan env
+    -- b1. masuk ke env >> .\venv\Scripts\activate
+    -- b2. dengan perintah >> uvicorn main:app --reload
+    -- b3. akses URL : http://localhost:3000/api/products/recommendations

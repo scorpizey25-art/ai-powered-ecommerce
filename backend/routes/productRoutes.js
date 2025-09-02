@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
 
+// combine dengan API python
+const axios = require('axios');
+
 // GET semua produk (READ)
 router.get('/', async (req, res) => {
     try {
@@ -9,6 +12,16 @@ router.get('/', async (req, res) => {
         res.json(products);
     } catch (err) {
         res.status(500).json({ message: err.message });
+    }
+});
+
+// GET rekomendasi produk dari layanan AI
+router.get('/recommendations', async (req, res) => {
+    try {
+        const aiServiceResponse = await axios.get('http://127.0.0.1:8000/recommend');
+        res.json(aiServiceResponse.data);
+    } catch (err) {
+        res.status(500).json({ message: 'Gagal mengambil rekomendasi dari layanan AI' });
     }
 });
 
