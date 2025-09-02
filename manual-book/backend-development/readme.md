@@ -9,7 +9,7 @@ Sebelum memulai, pastikan Anda telah menginstal dua komponen utama berikut di ko
 ### 1. Node.js
     Lingkungan runtime yang memungkinkan Anda menjalankan kode JavaScript di luar browser.
 
-### Langkah Instalasi :
+#### Langkah Instalasi :
         a. Kunjungi situs resmi Node.js: https://nodejs.org/
 
         b. Unduh versi LTS (Long-Term Support). Versi ini paling stabil dan 
@@ -20,12 +20,12 @@ Sebelum memulai, pastikan Anda telah menginstal dua komponen utama berikut di ko
 ### 2. MongoDB
     Basis data NoSQL yang akan kita gunakan untuk menyimpan data produk secara fleksibel dan efisien. 
     
-### Langkah Instalasi :
-    a. Kunjungi halaman unduhan MongoDB Community Server: 
-        https://www.mongodb.com/try/download/community
+#### Langkah Instalasi :
+        a. Kunjungi halaman unduhan MongoDB Community Server: 
+            https://www.mongodb.com/try/download/community
 
-    b. Pilih sistem operasi Anda (Windows, macOS, atau Linux) dan 
-        unduh installer-nya.
+        b. Pilih sistem operasi Anda (Windows, macOS, atau Linux) dan 
+            unduh installer-nya.
 
-    c. Jalankan installer dan ikuti petunjuknya. Pastikan Anda mencentang opsi 
-        untuk menginstal MongoDB Compass; ini adalah alat visual yang akan sangat membantu Anda dalam mengelola data.
+        c. Jalankan installer dan ikuti petunjuknya. Pastikan Anda mencentang opsi 
+            untuk menginstal MongoDB Compass; ini adalah alat visual yang akan sangat membantu Anda dalam mengelola data.
