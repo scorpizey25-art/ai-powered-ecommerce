@@ -423,10 +423,15 @@ Sekarang kita bisa melanjutkan ke langkah berikutnya, yaitu menghubungkan layana
 - Uji Integrasi: Pastikan kedua server Anda berjalan (satu untuk backend di port 3000
 
     a. Jalankan service dari backend, 
+
     -- a1. masukkan perintah >> node server.js 
+
     -- a2. akses URL : http://localhost:3000/api/products/recommendations
     
     b. Jalankan service dari ai-service, pastikan anda pada lingkungan env
+
     -- b1. masuk ke env >> .\venv\Scripts\activate
+
     -- b2. dengan perintah >> uvicorn main:app --reload
+    
     -- b3. akses URL : http://localhost:3000/api/products/recommendations
