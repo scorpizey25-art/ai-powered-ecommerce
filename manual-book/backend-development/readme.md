@@ -84,11 +84,8 @@ Buat file baru di dalam folder backend dan beri nama server.js. Salin dan tempel
 - Pastikan MongoDB Community Server Anda sudah berjalan di background.
 - Kembali ke terminal (masih di dalam folder backend) dan jalankan perintah ini:
 
-    Bash
-    node server.js
+        Bash
+        node server.js
 
-Jika semuanya berhasil, Anda akan melihat pesan seperti ini di terminal:
-
-✅ Terhubung ke MongoDB!
-- Server berjalan di http://localhost:3000
+- Jika semuanya berhasil, Anda akan melihat pesan seperti ini di terminal: ✅ Terhubung ke MongoDB! Server berjalan di http://localhost:3000
 - Buka browser Anda dan kunjungi http://localhost:3000. Anda seharusnya melihat tulisan "Backend API berjalan!". Ini menandakan bahwa server Anda sudah sukses berjalan!
