@@ -228,9 +228,15 @@ c. Salin dan tempel kode berikut ke dalam productRoutes.js. Kode ini berisi logi
 ##### 4. Menguji API
 a. Pastikan server Anda sudah berjalan. Jika tidak, jalankan lagi dengan node server.js.
 b. Anda tidak bisa menguji API ini langsung di browser. Anda membutuhkan alat seperti Postman atau Insomnia untuk mengirim permintaan POST, PATCH, dan DELETE. Atau, Anda bisa menggunakan extension di VS Code seperti "Thunder Client".
-c. Contoh Pengujian (menggunakan Postman/Insomnia):
-- Buat Produk Baru (POST): Kirim permintaan POST ke http://localhost:3000/api/products dengan data JSON di body-nya.
-
+c. Contoh testing API menggunakan ThunderClient :
+- Buat Produk Baru (POST): Kirim permintaan POST ke, 
+    a. Download Extension ThunderClient di VSCode
+    b. Disebelah Panel kiri bawah VSCode, klik icon pertir ThunderClient
+    c. Masukkan URL : http://localhost:3000/api/products dan pilih POST
+    d. Pilih tab Body dan masukkan data JSON diatas
+    e. Klik tombol SEND
+    f. Buka MongoDB Compas, klik ecommerce-db, data tersimpan
+    
         JSON
         {
           "name": "Laptop Gaming",
@@ -238,7 +244,8 @@ c. Contoh Pengujian (menggunakan Postman/Insomnia):
           "price": 15000000,
           "stock": 50
         }
-
-- Ambil Semua Produk (GET): Kirim permintaan GET ke http://localhost:3000/api/products. Anda akan melihat produk yang baru Anda buat.
+- Untuk menampilkan semua data gunakan (GET): Kirim permintaan GET ke http://localhost:3000/api/products. Anda akan melihat produk yang baru Anda buat.
+- Untuk mengupdate data (PATCH) : bubuhkan dibelakang URL + ID http://localhost:3000/api/products/68b6ae97d6b6ad8d25b6d891
+- Untuk menghapus data (DELETE) : bubuhkan dibelakang URL + ID http://localhost:3000/api/products/68b6ae97d6b6ad8d25b6d891
 
 ###### Setelah Anda menyelesaikan langkah ini dan berhasil menguji API Anda, kita akan beralih ke bagian yang tak kalah menarik: Layanan AI.

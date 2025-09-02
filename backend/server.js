@@ -12,6 +12,9 @@ const PORT = 3000;
 // yang umum digunakan dalam komunikasi API.
 app.use(express.json());
 
+const productRoutes = require('./routes/productRoutes');
+app.use('/api/products', productRoutes);
+
 // Menghubungkan ke database MongoDB
 mongoose.connect('mongodb://localhost:27017/ecommerce-db', {
     useNewUrlParser: true,
