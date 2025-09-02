@@ -12,6 +12,9 @@ const PORT = 3000;
 // yang umum digunakan dalam komunikasi API.
 app.use(express.json());
 
+// server.js adalah sebagai gerbang yg melakukan routing
+// ke file productRoutes.js untuk semua endpoint 
+// yang berhubungan dengan produk (CRUD).
 const productRoutes = require('./routes/productRoutes');
 app.use('/api/products', productRoutes);
 
